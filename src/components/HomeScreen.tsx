@@ -7,6 +7,7 @@ import {
     StyleSheet,
     Dimensions,
     ScrollView,
+    Image,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
@@ -14,11 +15,38 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 const { width } = Dimensions.get('window');
 
 const tiles = [
-    { id: 'farmer', title: 'Farmer', icon: '🌾' },
-    { id: 'builder', title: 'Building Worker', icon: '👷' },
-    { id: 'painter', title: 'Painter', icon: '🎨' },
-    { id: 'agri', title: 'Agri Equipment Rental', icon: '🚜', large: true },
-    { id: 'equip', title: 'Building & Painter Equipment Rental', icon: '⚙️', large: true },
+    { 
+        id: 'Farmer', 
+        title: 'Farmer', 
+        image: require('../assets/images/tractor_new.png'),
+        navigation: 'FarmerScreen'
+    },
+    { 
+        id: 'BuildingWorker', 
+        title: 'Building Worker', 
+        image: require('../assets/images/builder_Icon.png'),
+        navigation: 'BuildingWorkerScreen'
+    },
+    { 
+        id: 'Painter', 
+        title: 'Painter', 
+        image: require('../assets/images/tractor_new.png'),
+        navigation: 'PainterScreen'
+    },
+    { 
+        id: 'AgriEquipmentRental', 
+        title: 'Agri Equipment Rental', 
+        image: require('../assets/images/equpment_building.png'), 
+        large: true,
+        navigation: 'AgriEquipmentRentalScreen'
+    },
+    { 
+        id: 'BuildingPainterEquipmentRental', 
+        title: 'Building & Painter Equipment Rental', 
+        image: require('../assets/images/tractor_new.png'), 
+        large: true,
+        navigation: 'BuildingPainterEquipmentRentalScreen'
+    },
 ];
 
 const HomeScreen = ({ navigation }: { navigation: any }) => {
@@ -50,20 +78,20 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
                         <TouchableOpacity
                             key={t.id}
                             style={[styles.card, t.large ? styles.cardLarge : styles.cardSmall]}
-                            onPress={() => onTilePress(t.id)}
+                            onPress={() => navigation.navigate(t.navigation)}
                             activeOpacity={0.8}
                         >
                             <View style={styles.cardImage}>
-                                <Text style={styles.icon}>{t.icon}</Text>
+                                {t.image && typeof t.image === 'string' ? (
+                                    <Image source={{ uri: t.image }} style={{ width: 70, height: 60 ,backgroundColor:'white'}} />
+                                ) : (
+                                    <Image source={t.image} style={{ width: 110, height: 84 ,backgroundColor:'white'}} />
+                                )}
                             </View>
                             <Text style={styles.cardTitle}>{t.title}</Text>
                         </TouchableOpacity>
                     ))}
                 </View>
-                {/* </LinearGradient> */}
-                <TouchableOpacity style={styles.logout} onPress={logout}>
-                    <Text style={styles.logoutText}>Logout</Text>
-                </TouchableOpacity>
             </ScrollView>
 
             <View style={styles.tabBar}>
@@ -108,7 +136,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between'
     },
     card: {
-        backgroundColor: '#fff',
+        backgroundColor: '#e2dddd',
         borderRadius: 10,
         alignItems: 'center',
         justifyContent: 'center',
