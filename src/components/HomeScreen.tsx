@@ -45,7 +45,7 @@ const tiles = [
         title: 'Building & Painter Equipment Rental', 
         image: require('../assets/images/tractor_new.png'), 
         large: true,
-        navigation: 'BuildingPainterEquipmentRentalScreen'
+        navigation: 'BuildingRentals'
     },
 ];
 
@@ -111,7 +111,7 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
                     <MaterialIcons name="person" size={24} color={activeTab === 'Profile' ? 'black' : '#9aa3ad'} />
                     <Text style={[styles.tabLabel, activeTab === 'Profile' && styles.tabLabelActive]}>Profile</Text>
                 </TouchableOpacity>
-            </View>
+            </View>          
         </LinearGradient>
     );
 };

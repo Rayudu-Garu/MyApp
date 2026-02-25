@@ -6,6 +6,7 @@ import LoginScreen from './src/components/LoginScreen';
 import HomeScreen from './src/components/HomeScreen';
 import FarmerScreen from './src/components/FamerScreen';
 import BuildingRentals from './src/components/BuildingRentals';
+import PainterScreen from './src/components/PainterScreen'
 const App = () => {
 
   // ✅ include Farmer
@@ -26,6 +27,8 @@ const App = () => {
           {route === 'Home' && <HomeScreen navigation={navigation} />}
           {route === 'Farmer' && <FarmerScreen navigation={navigation} />}
           {route === 'BuildingRentals' && <BuildingRentals navigation={navigation} />}
+          {route === 'PainterScreen' && <PainterScreen navigation={navigation} />}
+
 
         </View>
       </SafeAreaView>
